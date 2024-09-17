@@ -95,13 +95,9 @@ namespace SerializzaDeserializza
 
         private void btn_read_Click(object sender, EventArgs e)
         {
-            listbox.Items.Clear();
-            for(int i = 0; i < libreria._libri.Count; i++)
-            {
-                listbox.Items.Add(libreria._libri[i].Serializza());
-            }
+            Read();
         }
-
+        
         private void btn_update_Click(object sender, EventArgs e)
         {
             if (txt_titolo.Text != "" && txt_autore.Text != "")
@@ -114,13 +110,26 @@ namespace SerializzaDeserializza
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            int a = listbox.SelectedIndex;
-            libreria._libri.RemoveAt(a);
+            if(listbox.SelectedIndex != -1)
+            {
+                int a = listbox.SelectedIndex;
+                libreria._libri.RemoveAt(a);
+                Read();
+            }        
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             libreria.Scrivi();
+        }
+
+        public void Read()
+        {
+            listbox.Items.Clear();
+            for (int i = 0; i < libreria._libri.Count; i++)
+            {
+                listbox.Items.Add(libreria._libri[i].Serializza());
+            }
         }
     }
 }
