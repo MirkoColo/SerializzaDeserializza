@@ -90,21 +90,29 @@ namespace SerializzaDeserializza
             if(txt_titolo.Text != "" && txt_autore.Text != "")
             {
                 libreria._libri.Add(new Libri(txt_titolo.Text, txt_autore.Text));
+                Read();
             }
         }
 
         private void btn_read_Click(object sender, EventArgs e)
         {
-            Read();
+            for(int i = 0; i < libreria._libri.Count; i++)
+            {
+                if(txt_autore.Text == libreria._libri[i]._autore && txt_titolo.Text == libreria._libri[i]._titolo)
+                {
+                    MessageBox.Show("Libro trovato in posizione: " + i);
+                }
+            }
         }
         
         private void btn_update_Click(object sender, EventArgs e)
         {
-            if (txt_titolo.Text != "" && txt_autore.Text != "")
+            if (txt_titolo.Text != "" && txt_autore.Text != "" && listbox.SelectedIndex != -1)
             {
                 int a = listbox.SelectedIndex;
                 libreria._libri[a]._titolo = txt_titolo.Text;
                 libreria._libri[a]._autore = txt_autore.Text;
+                Read();
             }
         }
 
