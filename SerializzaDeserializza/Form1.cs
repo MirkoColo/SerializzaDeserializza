@@ -62,6 +62,7 @@ namespace SerializzaDeserializza
                 }
             }
 
+
             public void Scrivi()
             {
                 using (StreamWriter sw = new StreamWriter("Libri.txt"))
